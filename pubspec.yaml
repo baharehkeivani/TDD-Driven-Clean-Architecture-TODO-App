@@ -15,6 +15,7 @@ dependencies:
   injectable: ^2.5.0
   injectable_generator: ^2.7.0
   either_dart: ^1.0.0
+  bloc: ^9.0.0
 
 dev_dependencies:
   flutter_test:
