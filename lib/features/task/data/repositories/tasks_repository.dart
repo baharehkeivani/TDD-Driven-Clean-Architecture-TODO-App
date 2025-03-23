@@ -10,4 +10,6 @@ abstract interface class TasksRepository {
   Future<Either<Failure, void>> editTask(String id, Task task);
 
   Future<Either<Failure, Task>> getTask(String id);
+
+  Future<Either<Failure, List<Task>>> getTasksByDate(DateTime date);
 }

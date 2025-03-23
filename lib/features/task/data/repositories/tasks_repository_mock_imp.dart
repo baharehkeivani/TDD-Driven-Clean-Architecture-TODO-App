@@ -3,9 +3,10 @@ import 'package:injectable/injectable.dart';
 import 'package:todo_app/core/errors/domain/entities/failure.dart';
 import 'package:todo_app/features/task/data/repositories/tasks_repository.dart';
 import 'package:todo_app/features/task/domain/entities/task.dart';
-
+import '../../../../core/configurations/domain/entities/environment.dart';
 
 @LazySingleton(as: TasksRepository)
+@Environment(developmentEnv)
 class TasksRepositoryMockImp implements TasksRepository {
   @override
   Future<Either<Failure, String>> addTask(Task task) {
@@ -28,6 +29,12 @@ class TasksRepositoryMockImp implements TasksRepository {
   @override
   Future<Either<Failure, void>> removeTask(String id) {
     // TODO: implement removeTask
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, List<Task>>> getTasksByDate(DateTime date) {
+    // TODO: implement getTasksByDate
     throw UnimplementedError();
   }
 }
