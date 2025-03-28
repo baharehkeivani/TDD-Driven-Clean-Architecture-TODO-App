@@ -57,8 +57,14 @@ class _TasksListPageState extends State<TasksListPage> {
     onPressed: () {
       showAdaptiveDialog(
         context: context,
+        barrierDismissible: true,
         builder: (BuildContext context) {
-          return AddTaskDialog.wrapper(date: selectedDateNotifier.value);
+          return AddTaskDialog.wrapper(
+            date: selectedDateNotifier.value,
+            onAddedTask: (task) {
+              // TODO
+            },
+          );
         },
       );
     },

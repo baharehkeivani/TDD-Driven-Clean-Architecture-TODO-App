@@ -22,4 +22,14 @@ class Task extends HiveObject {
     required this.title,
     required this.createdDate,
   });
+
+  factory Task.fromDate({
+    required String title,
+    required DateTime createdDate,
+  }) => Task(
+    isDone: false,
+    id: DateTime.now().microsecondsSinceEpoch.toString(),
+    title: title,
+    createdDate: createdDate,
+  );
 }
