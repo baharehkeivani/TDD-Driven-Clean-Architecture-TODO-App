@@ -19,7 +19,7 @@ import 'package:todo_app/features/todo/data/repositories/tasks_repository_imp.da
     as _i961;
 import 'package:todo_app/features/todo/domain/usecases/tasks_service.dart'
     as _i88;
-import 'package:todo_app/features/todo/presentation/cubits/add_task_list_cubit.dart'
+import 'package:todo_app/features/todo/presentation/cubits/add_task_cubit.dart'
     as _i910;
 import 'package:todo_app/features/todo/presentation/cubits/tasks_list_cubit.dart'
     as _i469;

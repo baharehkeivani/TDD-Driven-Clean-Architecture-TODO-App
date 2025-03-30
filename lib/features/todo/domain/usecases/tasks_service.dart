@@ -11,7 +11,7 @@ final class TasksService {
 
   TasksService() : _repository = getIt<TasksRepository>();
 
-  Future<Either<Failure, void>> addTask(Task task) =>
+  Future<Either<Failure, Task>> addTask(Task task) =>
       _repository.addTask(task);
 
   Future<Either<Failure, void>> removeTask(String id) =>
@@ -22,6 +22,6 @@ final class TasksService {
   Future<Either<Failure, List<Task>>> getTasksByDate(DateTime date) =>
       _repository.getTasksByDate(date);
 
-  Future<Either<Failure, bool>> toggleTaskState(String id) =>
-      _repository.toggleTaskState(id);
+  Future<Either<Failure, bool>> toggleTaskState(Task task) =>
+      _repository.toggleTaskState(task);
 }

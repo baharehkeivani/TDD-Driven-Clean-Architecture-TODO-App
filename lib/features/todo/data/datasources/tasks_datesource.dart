@@ -23,9 +23,10 @@ final class TasksDatasource extends LocalDatasource<Task> {
   }
 
   @override
-  Future<int?> add(Task task) async {
+  Future<Task?> add(Task task) async {
     if (box == null) await _initializeBox();
-    return box?.add(task);
+    await box?.put(task.id, task);
+    return task;
   }
 
   @override
@@ -39,4 +40,13 @@ final class TasksDatasource extends LocalDatasource<Task> {
     if (box == null) await _initializeBox();
     return box?.get(id);
   }
+
+@override
+  Future<void> edit(Task newTask, bool Function(Task task) where) async {
+    if (box == null) await _initializeBox();
+    final i = box!.values.toList().indexWhere((item) => where.call(item));
+    if (i == -1) throw Exception("No task found");
+    await box!.putAt(i, newTask);
+  }
+
 }

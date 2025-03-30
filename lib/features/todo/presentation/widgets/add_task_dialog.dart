@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_app/core/state_manager/entities/get_state.dart';
 import 'package:todo_app/features/todo/domain/entities/task.dart';
-import 'package:todo_app/features/todo/presentation/cubits/add_task_list_cubit.dart';
+import 'package:todo_app/features/todo/presentation/cubits/add_task_cubit.dart';
 
 import '../../../../core/configurations/domain/usecases/dependencies.dart';
 

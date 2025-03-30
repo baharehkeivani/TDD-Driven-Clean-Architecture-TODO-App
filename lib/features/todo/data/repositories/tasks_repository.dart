@@ -3,7 +3,7 @@ import 'package:todo_app/core/state_manager/errors/failure.dart';
 import 'package:todo_app/features/todo/domain/entities/task.dart';
 
 abstract interface class TasksRepository {
-  Future<Either<Failure, void>> addTask(Task task);
+  Future<Either<Failure, Task>> addTask(Task task);
 
   Future<Either<Failure, void>> removeTask(String id);
 
@@ -11,5 +11,5 @@ abstract interface class TasksRepository {
 
   Future<Either<Failure, List<Task>>> getTasksByDate(DateTime date);
 
-  Future<Either<Failure, bool>> toggleTaskState(String id);
+  Future<Either<Failure, bool>> toggleTaskState(Task task);
 }

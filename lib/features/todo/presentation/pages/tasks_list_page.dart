@@ -24,20 +24,20 @@ class TasksListPage extends StatefulWidget {
 }
 
 class _TasksListPageState extends State<TasksListPage> {
-  late final ValueNotifier<DateTime> selectedDateNotifier;
+  late final ValueNotifier<DateTime> _selectedDateNotifier;
 
   @override
   void initState() {
-    selectedDateNotifier = ValueNotifier(DateTime.now());
+    _selectedDateNotifier = ValueNotifier(DateTime.now());
     _initializePage();
 
-    selectedDateNotifier.addListener(() => _initializePage());
+    _selectedDateNotifier.addListener(() => _initializePage());
 
     super.initState();
   }
 
   void _initializePage() =>
-      context.read<TasksListCubit>().fetchTasks(selectedDateNotifier.value);
+      context.read<TasksListCubit>().fetchTasks(_selectedDateNotifier.value);
 
   @override
   Widget build(BuildContext context) {
@@ -58,14 +58,14 @@ class _TasksListPageState extends State<TasksListPage> {
       showAdaptiveDialog(
         context: context,
         barrierDismissible: true,
-        builder: (BuildContext context) {
-          return AddTaskDialog.wrapper(
-            date: selectedDateNotifier.value,
-            onAddedTask: (task) {
-              // TODO
-            },
-          );
-        },
+        builder:
+            (BuildContext dialogContext) => AddTaskDialog.wrapper(
+              date: _selectedDateNotifier.value,
+              onAddedTask: (task) {
+                if (task == null) return;
+                context.read<TasksListCubit>().addTask(task);
+              },
+            ),
       );
     },
   );
@@ -83,7 +83,7 @@ class _TasksListPageState extends State<TasksListPage> {
           initialDate: DateTime.now(),
           firstDate: DateTime(1800),
           lastDate: DateTime(3000),
-          onDateChanged: (value) => selectedDateNotifier.value = value,
+          onDateChanged: (value) => _selectedDateNotifier.value = value,
         ),
       ),
     );
@@ -91,7 +91,7 @@ class _TasksListPageState extends State<TasksListPage> {
 
   Widget _tasksSection() {
     return ValueListenableBuilder(
-      valueListenable: selectedDateNotifier,
+      valueListenable: _selectedDateNotifier,
       builder: (context, value, child) {
         return BlocBuilder<TasksListCubit, GetState>(
           builder: (context, state) {
@@ -115,7 +115,7 @@ class _TasksListPageState extends State<TasksListPage> {
                   },
                 );
               case FailureGetState():
-                return _buildErrorWidget(state.failure.getMessage(context));
+                return _buildErrorWidget(state.failure.message);
             }
           },
         );

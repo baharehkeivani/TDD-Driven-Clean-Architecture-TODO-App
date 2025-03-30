@@ -1,41 +1,44 @@
-import 'package:flutter/material.dart';
-
 sealed class Failure {
-  String getMessage(BuildContext context);
+  String get message;
 }
 
 class NetworkFailure extends Failure {
   @override
-  String getMessage(BuildContext context) => ""; // TODO
+  String get message =>
+      "Failed to connect to the network. Please check your internet connection.";
 }
 
 class ServerFailure extends Failure {
-  final String? message;
+  final String? _message;
 
-  ServerFailure({this.message});
+  ServerFailure({String? message}) : _message = message;
 
   @override
-  String getMessage(BuildContext context) => message ?? ""; // TODO
+  String get message =>
+      _message ?? "A server error occurred. Please try again later.";
 }
 
 abstract class DatabaseFailure extends Failure {}
 
 class ReadFailure extends DatabaseFailure {
   @override
-  String getMessage(BuildContext context) => ""; // TODO
+  String get message =>
+      "Failed to read data from the database. Please try again.";
 }
 
 class WriteFailure extends DatabaseFailure {
   @override
-  String getMessage(BuildContext context) => ""; // TODO
+  String get message =>
+      "Failed to write data to the database. Please check your storage and try again.";
 }
 
 class DeleteFailure extends DatabaseFailure {
   @override
-  String getMessage(BuildContext context) => ""; // TODO
+  String get message =>
+      "Failed to delete the record from the database. Please try again.";
 }
 
 class UnknownFailure extends Failure {
   @override
-  String getMessage(BuildContext context) => ""; // TODO
+  String get message => "An unknown error occurred. Please try again later.";
 }

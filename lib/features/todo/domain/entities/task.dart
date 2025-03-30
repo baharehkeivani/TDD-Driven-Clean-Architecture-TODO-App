@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 part 'task.g.dart';
 
 @HiveType(typeId: 0)
-class Task extends HiveObject {
+class Task extends HiveObject{
   @HiveField(0)
   final String id;
 
@@ -32,4 +32,7 @@ class Task extends HiveObject {
     title: title,
     createdDate: createdDate,
   );
+
+  Task toggleStatus() =>
+      Task(isDone: !isDone, id: id, title: title, createdDate: createdDate);
 }

@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 extension DateTimeExtension on DateTime {
   Map<int, String> get weekdays => {
@@ -46,6 +47,8 @@ extension DateTimeExtension on DateTime {
 
     return parts.join(' ');
   }
+
+  String getNiceTime() => DateFormat('hh:mm a').format(this);
 
   bool isAtSameDateAs(DateTime other) =>
       other.year == year && other.month == month && other.day == day;

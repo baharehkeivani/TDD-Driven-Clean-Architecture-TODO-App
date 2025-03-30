@@ -16,11 +16,11 @@ class TasksRepositoryImp implements TasksRepository {
   TasksRepositoryImp() : _localDatasource = getIt<TasksDatasource>();
 
   @override
-  Future<Either<Failure, void>> addTask(Task task) async {
+  Future<Either<Failure, Task>> addTask(Task task) async {
     try {
       final result = await _localDatasource.add(task);
       if (result == null) return Left(WriteFailure());
-      return Right(null);
+      return Right(task);
     } catch (e) {
       return Left(WriteFailure());
     }
@@ -62,8 +62,13 @@ class TasksRepositoryImp implements TasksRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> toggleTaskState(String id) {
-    // TODO: implement toggleTaskState
-    throw UnimplementedError();
+  Future<Either<Failure, bool>> toggleTaskState(Task task) async {
+    try {
+      final newTask = task.toggleStatus();
+      await _localDatasource.edit(newTask, (e) => e.id == newTask.id);
+      return Right(newTask.isDone);
+    } catch (e) {
+      return Left(WriteFailure());
+    }
   }
 }
