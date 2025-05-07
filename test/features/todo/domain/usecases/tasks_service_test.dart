@@ -12,25 +12,15 @@ void main() {
   /// Note: Mockito is not smart enough to generate a dummy value of type 'Either<Failure, Task>'.
   /// So we must consider using either 'provideDummy' or 'provideDummyBuilder' to give Mockito a proper dummy value.
   setUpAll(() {
-    // Register dummy values once
-    final dummyFailures = [
-      Left<Failure, List<Task>>(UnknownFailure()),
-      Left<Failure, Task>(UnknownFailure()),
-      Left<Failure, bool>(UnknownFailure()),
-      Left<Failure, void>(UnknownFailure()),
-    ];
-    final dummySuccesses = [
-      Right<Failure, List<Task>>([task]),
-      Right<Failure, Task>(task),
-      Right<Failure, bool>(false),
-      Right<Failure, void>(null),
-    ];
-
-    for (final dummy in [...dummyFailures, ...dummySuccesses]) {
-      provideDummy(dummy);
-    }
+    provideDummy<Either<Failure, List<Task>>>(Right([task]));
+    provideDummy<Either<Failure, Task>>(Right(task));
+    provideDummy<Either<Failure, bool>>(Right(false));
+    provideDummy<Either<Failure, void>>(Right(null));
+    provideDummy<Either<Failure, List<Task>>>(Left(UnknownFailure()));
+    provideDummy<Either<Failure, Task>>(Left(UnknownFailure()));
+    provideDummy<Either<Failure, bool>>(Left(UnknownFailure()));
+    provideDummy<Either<Failure, void>>(Left(UnknownFailure()));
   });
-
 
   late MockTasksRepository mockRepository;
   late TasksService service;
