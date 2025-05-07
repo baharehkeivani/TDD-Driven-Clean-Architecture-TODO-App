@@ -35,7 +35,6 @@ class _TaskListItemWidgetState extends State<TaskListItemWidget> {
       width: 20,
       child: BlocBuilder<ToggleTaskStateCubit, GetState>(
         builder: (context, state) {
-          print("hi");
           isDone = state is SuccessGetState<bool> ? state.item : isDone;
           final style = TextStyle(
             decoration: isDone ? TextDecoration.lineThrough : null,

@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-import 'package:todo_app/core/configurations/domain/usecases/dependencies.dart';
 import 'package:todo_app/core/state_manager/base_cubit.dart';
 import 'package:todo_app/core/state_manager/entities/get_state.dart';
 import 'package:todo_app/features/todo/domain/entities/task.dart';
@@ -13,9 +12,7 @@ class TasksListCubit extends BaseCubit<GetState> {
 
   List<Task> get tasks => _tasks;
 
-  TasksListCubit()
-    : _service = getIt<TasksService>(),
-      super(initialState: InitialGetState());
+  TasksListCubit(this._service) : super(initialState: InitialGetState());
 
   Future<void> fetchTasks(DateTime date) async {
     emit(LoadingGetState());

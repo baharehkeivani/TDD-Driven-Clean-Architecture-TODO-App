@@ -1,0 +1,7 @@
+targets:
+  $default:
+    builders:
+      mockito|mockBuilder:
+        options:
+          enableNullSafety: true
+          mockFinalClasses: true

@@ -15,7 +15,6 @@ class AppRouter {
         path: TasksListPage.path,
         name: TasksListPage.name,
         builder: (context, state) => TasksListPage.wrapper(),
-        routes: <RouteBase>[],
       ),
     ],
   );

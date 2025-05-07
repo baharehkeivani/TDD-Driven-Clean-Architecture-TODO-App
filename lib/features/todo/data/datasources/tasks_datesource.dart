@@ -5,7 +5,7 @@ import 'package:todo_app/features/todo/domain/entities/task.dart';
 import '../../../../core/datasource/local_datasource.dart';
 
 @LazySingleton()
-final class TasksDatasource extends LocalDatasource<Task> {
+class TasksDatasource extends LocalDatasource<Task> {
   Box<Task>? box;
 
   TasksDatasource() {
@@ -41,12 +41,11 @@ final class TasksDatasource extends LocalDatasource<Task> {
     return box?.get(id);
   }
 
-@override
+  @override
   Future<void> edit(Task newTask, bool Function(Task task) where) async {
     if (box == null) await _initializeBox();
     final i = box!.values.toList().indexWhere((item) => where.call(item));
     if (i == -1) throw Exception("No task found");
     await box!.putAt(i, newTask);
   }
-
 }

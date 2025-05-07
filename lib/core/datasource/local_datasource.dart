@@ -1,4 +1,4 @@
-abstract base class LocalDatasource<T> {
+abstract class LocalDatasource<T> {
   Future<List<T>> getAll();
 
   Future<T?> add(T object);
