@@ -1,19 +1,51 @@
-# 📝 Flutter TODO App – Clean Architecture
+## 🙋‍♂️ Why This Project?
 
-A simple TODO app built with **Flutter**, structured using **Clean Architecture**. This project is meant for **learning and experimenting** with best practices in scalable Flutter development, unit testing, and CI/CD pipelines.
-
----
-
-## ✨ Features
-
-- ✅ Add, update, delete, and mark tasks as complete
-- 🧱 Follows **Clean Architecture** (Presentation, Domain, Data layers)
-- 🔍 Unit tests for core logic using `test` and `mockito`
-- ⚙️ CI/CD setup with **GitHub Actions**
-- 📁 Modular and readable code for easy exploration and growth
+This is **not a reusable package**, but a **tutorial repository** to help Flutter developers:
+- 📂 Clean Architecture structure
+- ▶ State Management with Cubits
+- 🧪 Unit tests for domain and data layers and cubits
+- 🔄 Continuous Integration via GitHub Actions
 
 ---
 
-## 🚀 Getting Started
+## 🏗️ Architecture Overview
 
-This is not a publishable package, but a **learning project**. To explore, clone the project.
+This project adopts the **Clean Architecture** approach.
+Each layer is **independent**, testable, and follows the **separation of concerns** principle.
+
+---
+
+## 🧪 Testing
+
+Unit tests are included and cover:
+
+- Use cases
+- Repository contracts
+- Entities and value objects
+
+Run tests with:
+
+```bash
+flutter test
+````
+
+---
+
+## ⚙️ Continuous Integration
+
+This project includes a CI pipeline using **GitHub Actions**:
+
+* Runs unit tests on every push and pull request
+* Ensures code quality and reliability
+
+You can find the workflow in `.github/workflows/flutter_ci.yml`.
+
+---
+
+## 📬 Contact
+
+Feel free to reach out with questions or feedback via [GitHub Issues](https://github.com/baharehkeivani/TDD-Driven-Clean-Architecture-TODO-App/issues).
+
+Happy coding! 🚀
+
+
