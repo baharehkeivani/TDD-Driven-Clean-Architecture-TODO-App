@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.0 #3.7.2
+  sdk: ^3.7.0
 
 dependencies:
   flutter:
@@ -36,8 +36,8 @@ flutter:
   uses-material-design: true
   generate: true
 
-#  assets:
-#    - assets/
+  #  assets:
+  #    - assets/
 
   # fonts:
   #   - family: Schyler
