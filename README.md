@@ -1,16 +1,19 @@
-# todo_app
+# 📝 Flutter TODO App – Clean Architecture
 
-A new Flutter project.
+A simple TODO app built with **Flutter**, structured using **Clean Architecture**. This project is meant for **learning and experimenting** with best practices in scalable Flutter development, unit testing, and CI/CD pipelines.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Features
 
-A few resources to get you started if this is your first Flutter project:
+- ✅ Add, update, delete, and mark tasks as complete
+- 🧱 Follows **Clean Architecture** (Presentation, Domain, Data layers)
+- 🔍 Unit tests for core logic using `test` and `mockito`
+- ⚙️ CI/CD setup with **GitHub Actions**
+- 📁 Modular and readable code for easy exploration and growth
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🚀 Getting Started
+
+This is not a publishable package, but a **learning project**. To explore, clone the project.
