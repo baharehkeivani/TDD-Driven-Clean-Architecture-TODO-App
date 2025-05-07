@@ -17,25 +17,25 @@ void main() {
   provideDummy<Either<Failure, List<Task>>>(Left(UnknownFailure()));
 
   late MockTasksService mockService;
-  late final TasksListCubit cubit;
+  late TasksListCubit cubit;
 
   setUp(() {
     mockService = MockTasksService();
-    cubit = cubit;
+    cubit = TasksListCubit(mockService);
   });
 
   group('TasksListCubit', () {
     blocTest<TasksListCubit, GetState>(
       'emits [LoadingGetState, SuccessGetState] when fetchTasks succeeds',
       build: () {
-        when(mockService.getTasksByDate(any)).thenAnswer((_) async => Right([task]));
+        when(mockService.getTasksByDate(any)).thenAnswer((_) async => Right(tasks));
         return cubit;
       },
       act: (cubit) => cubit.fetchTasks(DateTime.now()),
       expect:
           () => [
             LoadingGetState(),
-            SuccessGetState([task]),
+            SuccessGetState(tasks),
           ],
     );
 
@@ -66,7 +66,7 @@ void main() {
         return cubit;
       },
       act: (cubit) => cubit.removeTask(task),
-      expect: () => [SuccessGetState([])],
+      expect: () => [SuccessGetState(<Task>[])],
     );
   });
 }
