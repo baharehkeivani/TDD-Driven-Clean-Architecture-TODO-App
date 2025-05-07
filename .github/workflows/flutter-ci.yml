@@ -20,9 +20,12 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+        env:
+          PUB_HOSTED_URL: https://storage.flutter-io.cn
 
       - name: Run tests
         run: flutter test
 
-      - name: Build APK (optional)
-        run: flutter build apk --release
+      # I don't intend to build APK or publish to any store
+      # - name: Build APK (optional)
+      #   run: flutter build apk --release
