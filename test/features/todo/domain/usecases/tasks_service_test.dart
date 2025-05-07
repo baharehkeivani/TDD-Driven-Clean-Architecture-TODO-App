@@ -2,11 +2,36 @@ import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:either_dart/either.dart';
 import 'package:todo_app/core/state_manager/errors/failure.dart';
+import 'package:todo_app/features/todo/domain/entities/task.dart';
 import 'package:todo_app/features/todo/domain/usecases/tasks_service.dart';
 
 import '../../data/mock/mocks.mocks.dart';
 import '../entities/task_test.dart';
+
 void main() {
+  /// Note: Mockito is not smart enough to generate a dummy value of type 'Either<Failure, Task>'.
+  /// So we must consider using either 'provideDummy' or 'provideDummyBuilder' to give Mockito a proper dummy value.
+  setUpAll(() {
+    // Register dummy values once
+    final dummyFailures = [
+      Left<Failure, List<Task>>(UnknownFailure()),
+      Left<Failure, Task>(UnknownFailure()),
+      Left<Failure, bool>(UnknownFailure()),
+      Left<Failure, void>(UnknownFailure()),
+    ];
+    final dummySuccesses = [
+      Right<Failure, List<Task>>([task]),
+      Right<Failure, Task>(task),
+      Right<Failure, bool>(false),
+      Right<Failure, void>(null),
+    ];
+
+    for (final dummy in [...dummyFailures, ...dummySuccesses]) {
+      provideDummy(dummy);
+    }
+  });
+
+
   late MockTasksRepository mockRepository;
   late TasksService service;
 
