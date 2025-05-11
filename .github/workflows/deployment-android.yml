@@ -2,7 +2,7 @@ name: 'Deployment for Android'
 
 on:
   push:
-    branches: [ main ]
+    branches: [ android-version ]
 
 jobs:
   build:
