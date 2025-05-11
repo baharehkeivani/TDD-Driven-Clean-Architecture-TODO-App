@@ -4,6 +4,9 @@ on:
   push:
     branches: [ ios-version ]
 
+permissions:
+  contents: write
+
 jobs:
   build-ios:
     runs-on: macos-latest
