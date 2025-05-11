@@ -5,16 +5,23 @@ on:
     branches: [ main ]
 
 jobs:
-  run-tests:
-    uses: ./.github/workflows/common.yml
-    with:
-      run-tests: true
-
   build-ios:
     needs: run-tests
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.0'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        if: ${{ inputs.run-tests }}
+        run: flutter test
 
       - run: pod repo update
         working-directory: ios
