@@ -5,11 +5,16 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  run-tests:
+    uses: ./.github/workflows/common.yml
+    with:
+      run-tests: true
 
+  build-android:
+    needs: run-tests
+    runs-on: ubuntu-latest
     steps:
-      - uses: .github/workflows/flutter-ci.yml
+      - uses: actions/checkout@v3
 
       - name: Build Android APK
         run: flutter build apk --release
