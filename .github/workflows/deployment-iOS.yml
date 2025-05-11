@@ -6,7 +6,6 @@ on:
 
 jobs:
   build-ios:
-    needs: run-tests
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
