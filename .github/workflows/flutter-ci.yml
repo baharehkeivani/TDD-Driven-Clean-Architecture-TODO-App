@@ -1,4 +1,4 @@
-name: Flutter CI
+name: 'Integration & Testing'
 
 on:
   push:
@@ -21,7 +21,3 @@ jobs:
 
       - name: Run tests
         run: flutter test
-
-      # I don't intend to build APK or publish to any store
-      # - name: Build APK (optional)
-      #   run: flutter build apk --release
