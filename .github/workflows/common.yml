@@ -1,13 +1,16 @@
-name: 'Integration & Testing'
+name: Flutter Common Steps
 
 on:
-  push:
-    branches: [ main ]
+  workflow_call:
+    inputs:
+      run-tests:
+        required: false
+        type: boolean
+        default: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  setup:
+    runs-on: ${{ inputs.runs-on || 'ubuntu-latest' }}
     steps:
       - uses: actions/checkout@v3
 
@@ -20,4 +23,5 @@ jobs:
         run: flutter pub get
 
       - name: Run tests
+        if: ${{ inputs.run-tests }}
         run: flutter test
