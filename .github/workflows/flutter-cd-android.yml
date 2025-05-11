@@ -9,7 +9,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: .github/workflows/flutter-ci.yml
+      - uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.0'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test
 
       - name: Build Android APK
         run: flutter build apk --release
