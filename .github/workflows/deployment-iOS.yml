@@ -5,7 +5,6 @@ on:
     branches: [ ios-version ]
 
 jobs:
-
   build-ios:
     runs-on: macos-latest
     steps:
